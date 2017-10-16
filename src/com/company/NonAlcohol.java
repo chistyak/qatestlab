@@ -1,9 +1,6 @@
 package com.company;
 
-import java.util.Locale;
-
 public class NonAlcohol extends Drink{
-
     private String cont;
 
     public NonAlcohol(String name, float price, String type, float volume, String cont, int count) {
@@ -11,9 +8,10 @@ public class NonAlcohol extends Drink{
         this.cont = cont;
     }
 
-
     @Override
-    public String[] save() {
-        return new String[]{name, String.format(Locale.ROOT,"%.2f", price), type, String.format(Locale.ROOT,"%.2f", volume), cont, String.format(Locale.ROOT,"%.0f", count)};
+    public String save() {
+        String price = String.format("%.2f", this.price).replace(',', '.');
+        String volume = String.format("%.2f", this.volume).replace(',', '.');
+        return String.format("\"%s\", %s, \"%s\", %s, \"%s\", %s\n", name, price, type, volume, cont, count);
     }
 }
